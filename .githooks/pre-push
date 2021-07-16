@@ -1,0 +1,60 @@
+#!/bin/bash
+
+directories=("viewglu")
+for directory in "${directories[@]}"; do
+  if [[ -d "documentation/$directory" ]] ; then
+      echo "Removing documentation/$directory"
+      rm -r "documentation/$directory"
+  fi
+done
+
+if [[ -f "documentation/index.md" ]] ; then
+    echo "Removing documentation/index.md"
+    rm -f "documentation/index.md"
+fi
+
+echo "Regenerating documentation"
+if ! dokkaStatus=$(./gradlew dokkaGfm); then
+  echo "Dokka must be successful before pushing!"
+  exit "$dokkaStatus"
+fi
+
+parentBranch=""
+branch=$(git branch --show-current)
+
+git log --max-count=100 --oneline --decorate=full | {
+  while read -r line; do
+
+    echo "line: $line"
+
+    if [[ $line == *"origin/$branch"* ]]; then
+      dest=$(echo "$line" | awk '{ print $2 }')
+      echo "Found local destination as $dest"
+      # DO NOT BREAK HERE
+    fi
+
+    if [[ $line == *"remotes/origin/develop"* ]]; then
+      parentBranch='develop'
+      break
+    fi
+    if [[ $line == *"remotes/origin/production"* ]]; then
+      parentBranch='production'
+      break
+    fi
+
+    if [[ $line == *"remotes/origin/main"* ]]; then
+      parentBranch='main'
+      break
+    fi
+  done
+
+  echo "Diffing $branch against parentBranch"
+  diff=$(git rev-list --left-only --count origin/"$parentBranch"..."$branch")
+
+  if [[ $diff == 0 ]]; then
+    echo "Looks like you're up to date!"
+  else
+    echo "You're behind by $diff commits! Please rebase before pushing!"
+    exit 1
+  fi
+}

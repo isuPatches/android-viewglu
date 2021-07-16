@@ -15,13 +15,6 @@
  */
 package com.isupatches.android.viewglu.build
 
-object BuildVersions {
-    const val BUILD_TOOLS: String = "30.0.3"
-
-    const val COMPILE_SDK: Int = 30
-    const val TARGET_SDK: Int = 30
-    const val MIN_SDK: Int = 16
-
-    const val MODULE_VERSION_CODE: Int = 1
-    const val MODULE_VERSION_NAME: String = "0.1.0-SNAPSHOT"
+object PublishingConstants {
+    const val GROUP_ID = "com.isupatches.android"
 }

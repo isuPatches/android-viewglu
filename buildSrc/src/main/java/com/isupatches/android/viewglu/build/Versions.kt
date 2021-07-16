@@ -18,12 +18,14 @@ package com.isupatches.android.viewglu.build
 @Suppress("StringLiteralDuplication")
 object Versions {
     const val AGP: String = "4.2.1"
-    const val CPD = "3.2"
-    const val DEXCOUNT = "2.1.0-RC01"
-    const val DOKKA: String = "0.10.1"
-    const val KTLINT_PLUGIN = "10.0.0"
+    const val CPD: String = "3.2"
+    const val DETEKT: String = "1.17.1"
+    const val DEXCOUNT: String = "2.1.0-RC01"
+    const val DOKKA: String = "1.5.0"
+    const val KTLINT_PLUGIN: String = "10.1.0"
+    const val PMD: String = "6.36.0"
 
-    const val KOTLIN: String = "1.5.10"
+    const val KOTLIN: String = "1.5.20"
 
     // AndroidX
     const val ANDROIDX_ANNOTATION: String = "1.2.0"
@@ -35,5 +37,5 @@ object Versions {
     // Google
     const val GOOGLE_MATERIAL: String = "1.3.0"
 
-    const val KTLINT = "0.36.0"
+    const val KTLINT: String = "0.36.0"
 }
