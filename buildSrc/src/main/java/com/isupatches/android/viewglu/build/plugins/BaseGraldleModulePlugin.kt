@@ -27,6 +27,8 @@ import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
+import java.io.FileInputStream
+import java.util.*
 
 class BaseGradleModulePlugin : Plugin<Project> {
 
@@ -39,6 +41,12 @@ class BaseGradleModulePlugin : Plugin<Project> {
         target.apply(plugin = "kotlin-android")
 
         target.configure<LibraryExtension> {
+
+            val keystorePropertiesFile = target.file("../keystore.properties")
+            val keystoreProperties = Properties()
+            if (keystorePropertiesFile.exists()) {
+                keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+            }
 
             compileSdkVersion(BuildVersions.COMPILE_SDK)
             buildToolsVersion = BuildVersions.BUILD_TOOLS
@@ -55,14 +63,31 @@ class BaseGradleModulePlugin : Plugin<Project> {
                 testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
             }
 
+            signingConfigs {
+                create("debug${target.name.capitalize(Locale.ROOT)}") {
+                    storeFile = target.file(System.getenv("VIEWGLU_DEBUG_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.debug.keystore_location"].toString())
+                    storePassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
+                    keyPassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
+                    keyAlias = System.getenv("VIEWGLU_DEBUG_KEY_ALIAS") ?: keystoreProperties["viewglu.debug.key_alias"].toString()
+                }
+
+                create("release${target.name.capitalize(Locale.ROOT)}") {
+                    storeFile = target.file(System.getenv("VIEWGLU_RELEASE_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.release.keystore_location"].toString())
+                    storePassword = System.getenv("VIEWGLU_RELEASE_PASSWORD") ?: keystoreProperties["viewglu.release.password"].toString()
+                    keyPassword = System.getenv("VIEWGLU_RELEASE_PASSWORD") ?: keystoreProperties["viewglu.release.password"].toString()
+                    keyAlias = System.getenv("VIEWGLU_RELEASE_KEY_ALIAS") ?: keystoreProperties["viewglu.release.key_alias"].toString()
+                }
+            }
+
             buildTypes {
 
                 debug {
-                    isTestCoverageEnabled = false
+                    isTestCoverageEnabled = true
                     isMinifyEnabled = true
                     proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
                     testProguardFile("proguard-rules-test.pro")
                     consumerProguardFile("consumer-rules.pro")
+                    signingConfig = signingConfigs.getByName("debug${target.name.capitalize(Locale.ROOT)}")
                 }
 
                 release {
@@ -70,6 +95,7 @@ class BaseGradleModulePlugin : Plugin<Project> {
                     isMinifyEnabled = true
                     proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
                     consumerProguardFile("consumer-rules.pro")
+                    signingConfig = signingConfigs.getByName("release${target.name.capitalize(Locale.ROOT)}")
                 }
             }
 

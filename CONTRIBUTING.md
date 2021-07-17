@@ -17,3 +17,5 @@ For merging:
 
 * PRs will be squashed and merged after a rebase
     - The commit should have issue-# in its description
+    - [Signed commits](https://docs.github.com/en/github/authenticating-to-github/managing-commit-signature-verification/signing-commits) are required
+    - The branch must be up-to-date before merging
