@@ -18,8 +18,10 @@ package com.isupatches.android.viewglu
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
@@ -89,7 +91,7 @@ inline fun <VIEW_BINDING : ViewBinding> AppCompatActivity.paste(
  * @since 07/2021
  */
 fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
-    return object : ReadWriteProperty<Fragment, VIEW_BINDING>, DefaultLifecycleObserver {
+    return object : ReadWriteProperty<Fragment, VIEW_BINDING>, LifecycleObserver {
 
         private var binding: VIEW_BINDING? = null
 
@@ -101,7 +103,9 @@ fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
                 })
         }
 
-        override fun onDestroy(owner: LifecycleOwner) {
+        @Suppress("unused")
+        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
+        fun onDestroy() {
             binding = null
         }
 

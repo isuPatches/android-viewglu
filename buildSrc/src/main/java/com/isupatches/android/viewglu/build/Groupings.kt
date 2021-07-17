@@ -18,9 +18,8 @@ package com.isupatches.android.viewglu.build
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
 fun DependencyHandler.lifecycle() {
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Lifecycle.VIEW_MODEL)
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Lifecycle.LIVE_DATA)
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Lifecycle.JAVA8)
+    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Lifecycle.RUNTIME)
+    add(DependencyConstants.KAPT, Dependencies.AndroidX.Lifecycle.COMPILER)
 }
 
 fun DependencyHandler.navigation() {

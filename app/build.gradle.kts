@@ -9,6 +9,8 @@ plugins {
     id("kotlin-android")
 }
 
+apply(from = "${rootProject.projectDir}/gradle/jacoco.gradle.kts")
+
 val keystoreProperties: Properties = Properties()
 val keystoreFile: File = rootProject.file("keystore.properties")
 if (keystoreFile.exists()) {
@@ -50,7 +52,7 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            isTestCoverageEnabled = true
+            isTestCoverageEnabled = false
             isMinifyEnabled = true
             isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules-debug.pro")

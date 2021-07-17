@@ -9,6 +9,7 @@ plugins {
     id("com.android.library")
     id("com.isupatches.android.viewglue.build.plugins.BaseGradleModulePlugin")
     id("kotlin-android")
+    id("kotlin-kapt")
     id("org.jetbrains.dokka")
 }
 

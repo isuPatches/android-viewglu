@@ -17,4 +17,5 @@ package com.isupatches.android.viewglu.build
 
 object DependencyConstants {
     const val IMPLEMENTATION: String = "implementation"
+    const val KAPT: String = "kapt"
 }

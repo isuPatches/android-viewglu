@@ -28,7 +28,8 @@ import org.gradle.kotlin.dsl.apply
 import org.gradle.kotlin.dsl.configure
 import org.gradle.kotlin.dsl.dependencies
 import java.io.FileInputStream
-import java.util.*
+import java.util.Locale
+import java.util.Properties
 
 class BaseGradleModulePlugin : Plugin<Project> {
 
@@ -82,7 +83,7 @@ class BaseGradleModulePlugin : Plugin<Project> {
             buildTypes {
 
                 debug {
-                    isTestCoverageEnabled = true
+                    isTestCoverageEnabled = false
                     isMinifyEnabled = true
                     proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
                     testProguardFile("proguard-rules-test.pro")

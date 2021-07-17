@@ -24,9 +24,8 @@ object Dependencies {
             Versions.ANDROIDX_CONSTRAINT_LAYOUT
 
         object Lifecycle {
-            const val VIEW_MODEL: String = "androidx.lifecycle:lifecycle-viewmodel:${Versions.ANDROIDX_LIFECYCLE}"
-            const val LIVE_DATA: String = "androidx.lifecycle:lifecycle-livedata:${Versions.ANDROIDX_LIFECYCLE}"
-            const val JAVA8: String = "androidx.lifecycle:lifecycle-common-java8:${Versions.ANDROIDX_LIFECYCLE}"
+            const val RUNTIME: String = "androidx.lifecycle:lifecycle-runtime:${Versions.ANDROIDX_LIFECYCLE}"
+            const val COMPILER: String = "androidx.lifecycle:lifecycle-compiler:${Versions.ANDROIDX_LIFECYCLE}"
         }
 
         object Navigation {

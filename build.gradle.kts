@@ -53,4 +53,7 @@ subprojects {
     apply(from = "${rootProject.projectDir}/gradle/dexcount.gradle.kts")
     apply(from = "${rootProject.projectDir}/gradle/ktlint.gradle.kts")
     apply(from = "${rootProject.projectDir}/gradle/pmd.gradle.kts")
+
+    // Code coverage
+    apply(from = "${rootProject.projectDir}/gradle/jacoco.gradle.kts")
 }
