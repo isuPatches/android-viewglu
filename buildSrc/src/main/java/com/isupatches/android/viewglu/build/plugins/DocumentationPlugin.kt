@@ -13,16 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.isupatches.android.viewglu.build
+package com.isupatches.android.viewglu.build.plugins
 
-import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.Plugin
+import org.gradle.api.Project
 
-fun DependencyHandler.lifecycle() {
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Lifecycle.RUNTIME)
-    add(DependencyConstants.KAPT, Dependencies.AndroidX.Lifecycle.COMPILER)
-}
+class DocumentationPlugin : Plugin<Project> {
 
-fun DependencyHandler.navigation() {
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Navigation.FRAGMENT)
-    add(DependencyConstants.IMPLEMENTATION, Dependencies.AndroidX.Navigation.UI)
+    override fun apply(target: Project) {
+        target.plugins.apply("org.jetbrains.dokka")
+    }
 }

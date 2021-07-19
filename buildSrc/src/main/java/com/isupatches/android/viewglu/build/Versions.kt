@@ -17,7 +17,7 @@ package com.isupatches.android.viewglu.build
 
 @Suppress("StringLiteralDuplication")
 object Versions {
-    const val AGP: String = "4.2.1"
+    const val AGP: String = "4.2.2"
     const val CPD: String = "3.2"
     const val DETEKT: String = "1.17.1"
     const val DEXCOUNT: String = "2.1.0-RC01"

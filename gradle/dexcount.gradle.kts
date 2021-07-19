@@ -3,7 +3,6 @@ import com.getkeepsafe.dexcount.DexMethodCountPlugin
 import com.getkeepsafe.dexcount.OutputFormat
 
 buildscript {
-
     repositories {
         mavenCentral()
     }

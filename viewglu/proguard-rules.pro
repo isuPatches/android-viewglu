@@ -1,3 +1,3 @@
 -dontnote
 
--keep class com.isupatches.android.viewbinding.** { *; }
+-keep class com.isupatches.android.viewglu.** { *; }

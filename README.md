@@ -18,12 +18,20 @@ A tool to limit the amount of boilerplate with Android's View Binding.
 
 ## Adding to your project
 
-Make sure you have one of the following repository accessible:
+Make sure you have the appropriate repository accessible:
+
+For stable releases and pre-releases:
 
 ```groovy
     repositories {
         mavenCentral()
     }
+```
+
+For Snapshots:
+
+```kotlin
+    maven("https://oss.sonatype.org/content/repositories/snapshots")
 ```
 
 and then add it as a dependency. Please see the [release page](https://github.com/isupatches/android-viewglu/releases) for the latest version.
@@ -117,7 +125,6 @@ For static analysis:
 
 - [KTLint](https://github.com/pinterest/ktlint)
 - [Detekt](https://github.com/detekt/detekt)
-- [PMD](https://github.com/pmd/pmd)
 - [CPD](https://github.com/aaschmid/gradle-cpd-plugin)
 - [Dexcount](https://github.com/KeepSafe/dexcount-gradle-plugin)
 

@@ -3,8 +3,9 @@ import com.isupatches.android.viewglu.build.Versions
 plugins.apply(PmdPlugin::class)
 
 configure<PmdExtension> {
-    isConsoleOutput = true
+    isConsoleOutput = false
     toolVersion = Versions.PMD
+    maxFailures.set(1)
     rulesMinimumPriority.set(1)
     ruleSets = listOf("category/java/errorprone.xml", "category/java/bestpractices.xml")
 }

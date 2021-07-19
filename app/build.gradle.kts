@@ -84,7 +84,9 @@ android {
 }
 
 dependencies {
-    implementation(project(":viewglu"))
+    implementation("com.isupatches.android:viewglu:0.1.0-SNAPSHOT") {
+        isChanging = true
+    }
 
     implementation(Dependencies.AndroidX.APPCOMPAT)
     implementation(Dependencies.AndroidX.CONSTRAINT_LAYOUT)

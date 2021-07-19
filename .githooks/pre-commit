@@ -17,12 +17,6 @@ if ! lintStatus=$(./gradlew --parallel --max-workers=4 lintDebug); then
   exit "$lintStatus"
 fi
 
-echo "Running pmd"
-if ! pmdStatus=$(./gradlew --parallel --max-workers=4 pmd); then
-  echo "PMD must pass before commit!"
-  exit "$pmdStatus"
-fi
-
 echo "Running cpd"
 if ! cpdStatus=$(./gradlew --parallel --max-workers=4 cpdCheck); then
   echo "CPD must pass before commit!"
