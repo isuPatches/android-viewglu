@@ -1,7 +1,6 @@
 import com.isupatches.android.viewglu.build.Dependencies
-import com.isupatches.android.viewglu.build.debug
+import com.isupatches.android.viewglu.build.Versions
 import com.isupatches.android.viewglu.build.navigation
-import com.isupatches.android.viewglu.build.release
 import java.util.Properties
 
 plugins {
@@ -18,14 +17,14 @@ if (keystoreFile.exists()) {
 }
 
 android {
-    compileSdkVersion(com.isupatches.android.viewglu.build.BuildVersions.COMPILE_SDK)
-    buildToolsVersion(com.isupatches.android.viewglu.build.BuildVersions.BUILD_TOOLS)
+    compileSdk = com.isupatches.android.viewglu.build.BuildVersions.COMPILE_SDK
+    buildToolsVersion = com.isupatches.android.viewglu.build.BuildVersions.BUILD_TOOLS
 
     defaultConfig {
         applicationId = "com.isupatches.android.viewbinding.delegates.sample"
 
-        minSdkVersion(com.isupatches.android.viewglu.build.BuildVersions.MIN_SDK)
-        targetSdkVersion(com.isupatches.android.viewglu.build.BuildVersions.TARGET_SDK)
+        minSdk = com.isupatches.android.viewglu.build.BuildVersions.MIN_SDK
+        targetSdk = com.isupatches.android.viewglu.build.BuildVersions.TARGET_SDK
 
         versionCode = com.isupatches.android.viewglu.build.BuildVersions.MODULE_VERSION_CODE
         versionName = com.isupatches.android.viewglu.build.BuildVersions.MODULE_VERSION_NAME
@@ -52,9 +51,9 @@ android {
     buildTypes {
         debug {
             applicationIdSuffix = ".debug"
-            isTestCoverageEnabled = false
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isTestCoverageEnabled = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules-debug.pro")
             testProguardFile(file("proguard-rules-test.pro"))
             signingConfig = signingConfigs.getByName("debug")
@@ -70,7 +69,7 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
         targetCompatibility = JavaVersion.VERSION_11
     }
 
@@ -80,6 +79,20 @@ android {
 
     buildFeatures {
         viewBinding = true
+    }
+
+    testOptions {
+        jacoco.jacocoVersion = Versions.JACOCO
+    }
+
+    lint {
+        isCheckAllWarnings = true
+        isShowAll = true
+        isExplainIssues = true
+        isAbortOnError = true
+        isWarningsAsErrors = true
+        disable("InvalidPackage") // Due to https://issuetracker.google.com/issues/178400721 and using Jacoco 0.8.3
+        warning("UnusedIds", "InvalidPackage") // Currently warnings for ViewBinding
     }
 }
 

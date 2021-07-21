@@ -2,6 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestExceptionFormat
 import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.dokka.gradle.DokkaTask
 import org.jetbrains.dokka.Platform.jvm
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
 
@@ -63,6 +64,10 @@ subprojects {
 
     // Code coverage
     apply(from = "${rootProject.projectDir}/gradle/jacoco.gradle.kts")
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions.jvmTarget = "${JavaVersion.VERSION_11}"
+    }
 
     /**
      * Ideally this would be migrated out of the project level build.gradle.kts to the [DocumentationPlugin],

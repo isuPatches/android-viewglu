@@ -98,9 +98,12 @@ fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
         init {
             this@paste
                 .viewLifecycleOwnerLiveData
-                .observe(this@paste, { owner: LifecycleOwner? ->
-                    owner?.lifecycle?.addObserver(this)
-                })
+                .observe(
+                    this@paste,
+                    { owner: LifecycleOwner? ->
+                        owner?.lifecycle?.addObserver(this)
+                    }
+                )
         }
 
         @Suppress("unused")

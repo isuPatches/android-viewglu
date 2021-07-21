@@ -17,15 +17,16 @@ package com.isupatches.android.viewglu.build
 
 @Suppress("StringLiteralDuplication")
 object Versions {
-    const val AGP: String = "4.2.2"
+    const val AGP: String = "7.0.0-rc01"
     const val CPD: String = "3.2"
     const val DETEKT: String = "1.17.1"
     const val DEXCOUNT: String = "2.1.0-RC01"
     const val DOKKA: String = "1.5.0"
+    const val JACOCO: String = "0.8.3" // Cannot upgrade to 0.8.4 or later due to AS/Java11 reasons (https://issuetracker.google.com/issues/178400721)
     const val KTLINT_PLUGIN: String = "10.1.0"
     const val PMD: String = "6.36.0"
 
-    const val KOTLIN: String = "1.5.20"
+    const val KOTLIN: String = "1.5.21"
 
     // AndroidX
     const val ANDROIDX_ANNOTATION: String = "1.2.0"
@@ -35,7 +36,7 @@ object Versions {
     const val ANDROIDX_NAVIGATION: String = "2.3.5"
 
     // Google
-    const val GOOGLE_MATERIAL: String = "1.3.0"
+    const val GOOGLE_MATERIAL: String = "1.4.0"
 
-    const val KTLINT: String = "0.36.0"
+    const val KTLINT: String = "0.41.0"
 }

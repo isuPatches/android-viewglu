@@ -18,10 +18,8 @@ buildscript {
 plugins.apply(KtlintPlugin::class)
 
 configure<KtlintExtension> {
-    // https://github.com/pinterest/ktlint/issues/764
-    // Cannot upgrade past 0.36.0 until new line issue is resolved
     version.set(com.isupatches.android.viewglu.build.Versions.KTLINT)
-    debug.set(true)
+    debug.set(false)
     verbose.set(true)
     android.set(true)
     reporters {
