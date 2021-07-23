@@ -1,0 +1,24 @@
+#!/bin/bash
+echo "Running ktlintCheck"
+if ! ktlintStatus=$(./gradlew --parallel --max-workers=4 ktlintCheck); then
+  echo "Ktlint must pass before commit!"
+  exit "$ktlintStatus"
+fi
+
+echo "Running detekt"
+if ! detektStatus=$(./gradlew --parallel --max-workers=4 detekt); then
+  echo "Detekt must pass before commit!"
+  exit "$detektStatus"
+fi
+
+echo "Running lint"
+if ! lintStatus=$(./gradlew --parallel --max-workers=4 lintDebug); then
+  echo "Lint must pass before commit!"
+  exit "$lintStatus"
+fi
+
+echo "Running cpd"
+if ! cpdStatus=$(./gradlew --parallel --max-workers=4 cpdCheck); then
+  echo "CPD must pass before commit!"
+  exit "$cpdStatus"
+fi
