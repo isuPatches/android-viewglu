@@ -17,7 +17,9 @@ package com.isupatches.android.viewglu.build.plugins
 
 import com.android.build.gradle.LibraryExtension
 import com.isupatches.android.viewglu.build.BuildVersions
+import com.isupatches.android.viewglu.build.debug
 import com.isupatches.android.viewglu.build.Dependencies
+import com.isupatches.android.viewglu.build.release
 import com.isupatches.android.viewglu.build.DependencyConstants.IMPLEMENTATION
 import com.isupatches.android.viewglu.build.Versions
 import org.gradle.api.JavaVersion
@@ -43,18 +45,21 @@ class BaseGradleModulePlugin : Plugin<Project> {
 
         target.configure<LibraryExtension> {
 
-            val keystorePropertiesFile = File("../keystore.properties")
+            val keystorePropertiesFile = target.file("../keystore.properties")
             val keystoreProperties = Properties()
             if (keystorePropertiesFile.exists()) {
                 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
             }
 
-            compileSdk = BuildVersions.COMPILE_SDK
+            compileSdkVersion(BuildVersions.COMPILE_SDK)
             buildToolsVersion = BuildVersions.BUILD_TOOLS
 
             defaultConfig {
-                minSdk = BuildVersions.MIN_SDK
-                targetSdk = BuildVersions.TARGET_SDK
+                minSdkVersion(BuildVersions.MIN_SDK)
+                targetSdkVersion(BuildVersions.TARGET_SDK)
+
+                versionCode = BuildVersions.MODULE_VERSION_CODE
+                versionName = BuildVersions.MODULE_VERSION_NAME
 
                 vectorDrawables.useSupportLibrary = true
 
@@ -63,6 +68,7 @@ class BaseGradleModulePlugin : Plugin<Project> {
 
             signingConfigs {
                 create("debug${target.name.capitalize(Locale.ROOT)}") {
+                    println("keystore location: ${File(System.getenv("VIEWGLU_DEBUG_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.debug.keystore_location"].toString())}")
                     storeFile = File(System.getenv("VIEWGLU_DEBUG_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.debug.keystore_location"].toString())
                     storePassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
                     keyPassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
@@ -79,6 +85,7 @@ class BaseGradleModulePlugin : Plugin<Project> {
 
             buildTypes {
                 debug {
+                    // Test coverage needs to be disabled to release -SNAPSHOT builds
                     isTestCoverageEnabled = true
                     isMinifyEnabled = false
                     proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
@@ -97,23 +104,29 @@ class BaseGradleModulePlugin : Plugin<Project> {
             }
 
             compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_11
-                targetCompatibility = JavaVersion.VERSION_11
+                sourceCompatibility = JavaVersion.VERSION_1_8
+                targetCompatibility = JavaVersion.VERSION_1_8
             }
 
-            lint {
+            sourceSets {
+                getByName("main") { jni.srcDirs() }
+            }
+
+            lintOptions {
                 isCheckAllWarnings = true
                 isShowAll = true
                 isExplainIssues = true
                 isAbortOnError = true
                 isWarningsAsErrors = true
-                disable("InvalidPackage") // Due to https://issuetracker.google.com/issues/178400721 and using Jacoco 0.8.3
                 warning("UnusedIds") // Currently warnings for ViewBinding
             }
 
             testOptions {
                 unitTests.isReturnDefaultValues = true
-                jacoco.jacocoVersion = Versions.JACOCO
+            }
+
+            jacoco {
+                version = Versions.JACOCO
             }
         }
 

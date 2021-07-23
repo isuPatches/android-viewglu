@@ -17,15 +17,8 @@ package com.isupatches.android.viewglu.build
 
 @Suppress("StringLiteralDuplication")
 object Versions {
-    const val AGP: String = "7.0.0-rc01"
-    const val CPD: String = "3.2"
-    const val DETEKT: String = "1.17.1"
-    const val DEXCOUNT: String = "2.1.0-RC01"
-    const val DOKKA: String = "1.5.0"
-    const val JACOCO: String = "0.8.3" // Cannot upgrade to 0.8.4 or later due to AS/Java11 reasons (https://issuetracker.google.com/issues/178400721)
-    const val KTLINT_PLUGIN: String = "10.1.0"
-    const val PMD: String = "6.36.0"
-
+    // Core tooling
+    const val AGP: String = "4.2.2"
     const val KOTLIN: String = "1.5.21"
 
     // AndroidX
@@ -38,5 +31,29 @@ object Versions {
     // Google
     const val GOOGLE_MATERIAL: String = "1.4.0"
 
+    // Static Analysis
+    const val CPD: String = "3.2"
+    const val DETEKT: String = "1.17.1"
+    const val DEXCOUNT: String = "2.1.0-RC01"
+    const val KTLINT_PLUGIN: String = "10.1.0"
     const val KTLINT: String = "0.41.0"
+    const val PMD: String = "6.36.0"
+
+    // Documentation
+    const val DOKKA: String = "1.5.0"
+
+    // Code Coverage
+    const val JACOCO: String = "0.8.3"
+
+    // Common Test
+    const val ANDROIDX_TEST_EXT_JUNIT: String = "1.1.1"
+    const val ANDROIDX_FRAGMENT_TESTING: String = "1.3.6"
+
+    // Unit Test
+    const val JUNIT: String = "4.13.2"
+
+    // Android Test
+    const val ANDROIDX_ESPRESSO: String = "3.3.0"
+    const val ANDROIDX_TEST_RULES: String = "1.4.0"
+    const val ANDROIDX_TEST_RUNNER: String = "1.4.0"
 }

@@ -42,3 +42,20 @@ object Dependencies {
         const val MATERIAL: String = "com.google.android.material:material:${Versions.GOOGLE_MATERIAL}"
     }
 }
+
+object TestDependencies {
+    const val JUNIT: String = "junit:junit:${Versions.JUNIT}"
+
+    object AndroidX {
+
+        object Espresso {
+            const val CORE: String = "androidx.test.espresso:espresso-core:${Versions.ANDROIDX_ESPRESSO}"
+        }
+
+        const val FRAGMENT_TESTING: String = "androidx.fragment:fragment-testing:${Versions.ANDROIDX_FRAGMENT_TESTING}"
+        const val NAVIGATION_TESTING: String = "androidx.navigation:navigation-testing:${Versions.ANDROIDX_NAVIGATION}"
+        const val TEST_EXT_JUNIT: String = "androidx.test.ext:junit:${Versions.ANDROIDX_TEST_EXT_JUNIT}"
+        const val TEST_RUNNER: String = "androidx.test:runner:${Versions.ANDROIDX_TEST_RUNNER}"
+        const val TEST_RULES: String = "androidx.test:rules:${Versions.ANDROIDX_TEST_RULES}"
+    }
+}

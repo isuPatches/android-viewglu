@@ -1,14 +1,16 @@
+import com.isupatches.android.viewglu.build.BuildVersions
 import com.isupatches.android.viewglu.build.Dependencies
+import com.isupatches.android.viewglu.build.TestDependencies
 import com.isupatches.android.viewglu.build.Versions
+import com.isupatches.android.viewglu.build.debug
 import com.isupatches.android.viewglu.build.navigation
+import com.isupatches.android.viewglu.build.release
 import java.util.Properties
 
 plugins {
     id("com.android.application")
     id("kotlin-android")
 }
-
-apply(from = "${rootProject.projectDir}/gradle/jacoco.gradle.kts")
 
 val keystoreProperties: Properties = Properties()
 val keystoreFile: File = rootProject.file("keystore.properties")
@@ -17,17 +19,17 @@ if (keystoreFile.exists()) {
 }
 
 android {
-    compileSdk = com.isupatches.android.viewglu.build.BuildVersions.COMPILE_SDK
-    buildToolsVersion = com.isupatches.android.viewglu.build.BuildVersions.BUILD_TOOLS
+    compileSdkVersion(BuildVersions.COMPILE_SDK)
+    buildToolsVersion = BuildVersions.BUILD_TOOLS
 
     defaultConfig {
         applicationId = "com.isupatches.android.viewbinding.delegates.sample"
 
-        minSdk = com.isupatches.android.viewglu.build.BuildVersions.MIN_SDK
-        targetSdk = com.isupatches.android.viewglu.build.BuildVersions.TARGET_SDK
+        minSdk = BuildVersions.MIN_SDK
+        targetSdk = BuildVersions.TARGET_SDK
 
-        versionCode = com.isupatches.android.viewglu.build.BuildVersions.MODULE_VERSION_CODE
-        versionName = com.isupatches.android.viewglu.build.BuildVersions.MODULE_VERSION_NAME
+        versionCode = BuildVersions.MODULE_VERSION_CODE
+        versionName = BuildVersions.MODULE_VERSION_NAME
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -69,34 +71,34 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_11
-        targetCompatibility = JavaVersion.VERSION_11
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
     }
 
     kotlinOptions {
-        jvmTarget = "${JavaVersion.VERSION_11}"
+        jvmTarget = "${JavaVersion.VERSION_1_8}"
     }
 
     buildFeatures {
         viewBinding = true
     }
 
-    testOptions {
-        jacoco.jacocoVersion = Versions.JACOCO
+    jacoco {
+        version = Versions.JACOCO
     }
 
-    lint {
+    lintOptions {
         isCheckAllWarnings = true
         isShowAll = true
         isExplainIssues = true
         isAbortOnError = true
         isWarningsAsErrors = true
-        disable("InvalidPackage") // Due to https://issuetracker.google.com/issues/178400721 and using Jacoco 0.8.3
-        warning("UnusedIds", "InvalidPackage") // Currently warnings for ViewBinding
+        warning("UnusedIds") // Currently warnings for ViewBinding
     }
 }
 
 dependencies {
+//    implementation(project(":viewglu"))
     implementation("com.isupatches.android:viewglu:0.1.0-SNAPSHOT") {
         isChanging = true
     }
@@ -108,4 +110,14 @@ dependencies {
 
     implementation(Dependencies.Google.MATERIAL)
     navigation()
+
+    debugImplementation(TestDependencies.AndroidX.FRAGMENT_TESTING)
+
+    // Instrumentation test dependencies
+    androidTestImplementation(TestDependencies.JUNIT)
+    androidTestImplementation(TestDependencies.AndroidX.Espresso.CORE)
+    androidTestImplementation(TestDependencies.AndroidX.TEST_RUNNER)
+    androidTestImplementation(TestDependencies.AndroidX.TEST_RULES)
+    androidTestImplementation(TestDependencies.AndroidX.TEST_EXT_JUNIT)
+    androidTestImplementation(TestDependencies.AndroidX.NAVIGATION_TESTING)
 }

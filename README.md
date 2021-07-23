@@ -4,7 +4,7 @@ A tool to limit the amount of boilerplate with Android's View Binding.
 
 > <br/>*Developed by Patches 07/2021 - present* <br/>
 > <br/>Supports Android SDK levels 18-30<br/><br/>
-> <br/>Compiled with Java11<br/><br/>
+> <br/>Compiled with Java8<br/><br/>
 
 - [Adding to your project](#adding-to-your-project)
 - [Prerequisite](#prerequisite)

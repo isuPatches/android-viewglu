@@ -66,7 +66,7 @@ subprojects {
     apply(from = "${rootProject.projectDir}/gradle/jacoco.gradle.kts")
 
     tasks.withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "${JavaVersion.VERSION_11}"
+        kotlinOptions.jvmTarget = "${JavaVersion.VERSION_1_8}"
     }
 
     /**
@@ -85,7 +85,7 @@ subprojects {
                 reportUndocumented.set(true)
                 skipEmptyPackages.set(false)
                 platform.set(jvm)
-                jdkVersion.set(11)
+                jdkVersion.set(8)
                 noStdlibLink.set(false)
                 noJdkLink.set(false)
                 noAndroidSdkLink.set(false)

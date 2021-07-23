@@ -7,13 +7,6 @@
     app:startDestination="@+id/mainFragment"
     tools:ignore="UnusedIds">
 
-    <activity
-        android:id="@+id/mainActivity"
-        android:name="com.isupatches.android.viewglu.sample.MainActivity"
-        android:label="main_activity"
-        tools:layout="@layout/activity_main"
-        />
-
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.isupatches.android.viewglu.sample.MainFragment"

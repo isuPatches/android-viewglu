@@ -13,15 +13,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.isupatches.android.viewglu.build
+package com.isupatches.android.viewglu
 
-object BuildVersions {
-    const val BUILD_TOOLS: String = "30.0.3"
+import org.junit.Assert.assertEquals
+import org.junit.Test
 
-    const val COMPILE_SDK: Int = 30
-    const val TARGET_SDK: Int = 30
-    const val MIN_SDK: Int = 16
+/**
+ * Example local unit test, which will execute on the development machine (host).
+ *
+ * See [testing documentation](http://d.android.com/tools/testing).
+ */
+internal class ExampleUnitTest {
 
-    const val MODULE_VERSION_CODE: Int = 1
-    const val MODULE_VERSION_NAME: String = "1.0.0"
+    @Test
+    fun addition_isCorrect() {
+        assertEquals(4, (2 + 2))
+    }
 }

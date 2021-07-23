@@ -1,6 +1,7 @@
 import com.isupatches.android.viewglu.build.BuildVersions
 import com.isupatches.android.viewglu.build.Dependencies
 import com.isupatches.android.viewglu.build.PublishingConstants.GROUP_ID
+import com.isupatches.android.viewglu.build.TestDependencies
 import com.isupatches.android.viewglu.build.lifecycle
 
 plugins {
@@ -26,4 +27,6 @@ dependencies {
     lifecycle()
 
     implementation(Dependencies.Kotlin.STD_LIB)
+
+    testImplementation(TestDependencies.JUNIT)
 }
