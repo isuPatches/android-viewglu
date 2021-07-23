@@ -68,7 +68,6 @@ class BaseGradleModulePlugin : Plugin<Project> {
 
             signingConfigs {
                 create("debug${target.name.capitalize(Locale.ROOT)}") {
-                    println("keystore location: ${File(System.getenv("VIEWGLU_DEBUG_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.debug.keystore_location"].toString())}")
                     storeFile = File(System.getenv("VIEWGLU_DEBUG_KEYSTORE_LOCATION") ?: keystoreProperties["viewglu.debug.keystore_location"].toString())
                     storePassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
                     keyPassword = System.getenv("VIEWGLU_DEBUG_PASSWORD") ?: keystoreProperties["viewglu.debug.password"].toString()
