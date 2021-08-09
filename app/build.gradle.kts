@@ -23,7 +23,7 @@ android {
     buildToolsVersion = BuildVersions.BUILD_TOOLS
 
     defaultConfig {
-        applicationId = "com.isupatches.android.viewbinding.delegates.sample"
+        applicationId = "com.isupatches.android.viewglu.sample"
 
         minSdk = BuildVersions.MIN_SDK
         targetSdk = BuildVersions.TARGET_SDK
@@ -98,8 +98,11 @@ android {
 }
 
 dependencies {
+    /*
+     * Toggle these to test release binary vs. source code
+     */
 //    implementation(project(":viewglu"))
-    implementation("com.isupatches.android:viewglu:0.1.0-SNAPSHOT") {
+    implementation("com.isupatches.android:viewglu:1.0.0") {
         isChanging = true
     }
 
