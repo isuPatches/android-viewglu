@@ -37,7 +37,6 @@ object Versions {
     const val DEXCOUNT: String = "2.1.0-RC01"
     const val KTLINT_PLUGIN: String = "10.1.0"
     const val KTLINT: String = "0.41.0"
-    const val PMD: String = "6.36.0"
 
     // Documentation
     const val DOKKA: String = "1.5.0"
