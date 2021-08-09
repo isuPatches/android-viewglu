@@ -15,6 +15,7 @@
  */
 package com.isupatches.android.viewglu
 
+import android.app.Activity
 import android.view.LayoutInflater
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -53,6 +54,40 @@ import kotlin.reflect.KProperty
  * @since 07/2021
  */
 inline fun <VIEW_BINDING : ViewBinding> AppCompatActivity.paste(
+    crossinline bindingInflater: (LayoutInflater) -> VIEW_BINDING
+): Lazy<VIEW_BINDING> {
+    return lazy(LazyThreadSafetyMode.NONE) {
+        bindingInflater.invoke(layoutInflater)
+    }
+}
+
+/**
+ * #### Description
+ *
+ * Helps to apply a [ViewBinding] to an [Activity] by invoking the inflater.
+ *
+ * #### Notes
+ *   - Uses the activity's layout inflater
+ *   - The [LazyThreadSafetyMode] is set to NONE
+ *   - Still requires the activity to apply the inflated binding
+ *
+ * #### Example Usage
+ * <pre><code>
+ *     private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
+ *
+ *     override fun onCreate(savedInstanceState: Bundle?) {
+ *         super.onCreate(savedInstanceState)
+ *         setContentView(binding.root)
+ *     }
+ * </code></pre>
+ *
+ * @receiver [AppCompatActivity]
+ * @return Lazy<ViewBinding>
+ *
+ * @author Patches Klinefelter
+ * @since 08/2021
+ */
+inline fun <VIEW_BINDING : ViewBinding> Activity.paste(
     crossinline bindingInflater: (LayoutInflater) -> VIEW_BINDING
 ): Lazy<VIEW_BINDING> {
     return lazy(LazyThreadSafetyMode.NONE) {
