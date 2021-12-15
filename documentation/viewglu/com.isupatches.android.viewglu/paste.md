@@ -16,12 +16,14 @@ Helps to apply a ViewBinding to an [AppCompatActivity](https://developer.android
 ####  Example Usage
 
 <pre><code>
+internal class MainActivity : AppCompatActivity() {
     private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
+}
 </code></pre>
 
 #### Return
@@ -50,12 +52,14 @@ Helps to apply a ViewBinding to an [Activity](https://developer.android.com/refe
 ####  Example Usage
 
 <pre><code>
+internal class MainActivity : Activity() {
     private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
     }
+}
 </code></pre>
 
 #### Return
@@ -84,12 +88,18 @@ Helps manage the ViewBinding for a [Fragment](https://developer.android.com/refe
 ####  Example Usage
 
 <pre><code>
-    private var binding: FragmentMainBinding by paste()
+internal class FragmentInflated : BaseFragment() {
+    private var binding: FragmentWithTextBinding by paste()
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentWithTextBinding.inflate(inflater, container, false)
         return binding.root
     }
+}
 </code></pre>
 
 #### Return
@@ -124,12 +134,9 @@ Helps manage the ViewBinding for a [Fragment](https://developer.android.com/refe
 ####  Example Usage
 
 <pre><code>
-    private var binding: FragmentMainBinding by paste()
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        binding = FragmentMainBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+internal class FragmentBound : BaseFragmentWithLayout(R.layout.fragment_with_text) {
+    override val binding: FragmentWithTextBinding by paste(FragmentWithTextBinding::bind)
+}
 </code></pre>
 
 #### Return
