@@ -4,5 +4,6 @@ $dokka.location:com.isupatches.android.viewglu////PointingToDeclaration/viewglu
 $dokka.location:com.isupatches.android.viewglu//paste/android.app.Activity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
 $dokka.location:com.isupatches.android.viewglu//paste/androidx.appcompat.app.AppCompatActivity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
 $dokka.location:com.isupatches.android.viewglu//paste/androidx.fragment.app.Fragment#/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
+$dokka.location:com.isupatches.android.viewglu//paste/androidx.fragment.app.Fragment#kotlin.Function1[android.view.View,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
 com.isupatches.android.viewglu
 

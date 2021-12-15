@@ -43,12 +43,14 @@ import kotlin.reflect.KProperty
  *
  * #### Example Usage
  * <pre><code>
- *     private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
+ *  internal class MainActivity : AppCompatActivity() {
+ *      private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
  *
- *     override fun onCreate(savedInstanceState: Bundle?) {
- *         super.onCreate(savedInstanceState)
- *         setContentView(binding.root)
- *     }
+ *      override fun onCreate(savedInstanceState: Bundle?) {
+ *          super.onCreate(savedInstanceState)
+ *          setContentView(binding.root)
+ *      }
+ *  }
  * </code></pre>
  *
  * @receiver [AppCompatActivity]
@@ -77,12 +79,14 @@ inline fun <VIEW_BINDING : ViewBinding> AppCompatActivity.paste(
  *
  * #### Example Usage
  * <pre><code>
- *     private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
+ *  internal class MainActivity : Activity() {
+ *      private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
  *
- *     override fun onCreate(savedInstanceState: Bundle?) {
- *         super.onCreate(savedInstanceState)
- *         setContentView(binding.root)
- *     }
+ *      override fun onCreate(savedInstanceState: Bundle?) {
+ *          super.onCreate(savedInstanceState)
+ *          setContentView(binding.root)
+ *      }
+ *  }
  * </code></pre>
  *
  * @receiver [Activity]
@@ -114,12 +118,18 @@ inline fun <VIEW_BINDING : ViewBinding> Activity.paste(
  * #### Example Usage
  *
  * <pre><code>
- *     private var binding: FragmentMainBinding by paste()
+ *  internal class FragmentInflated : BaseFragment() {
+ *      private var binding: FragmentWithTextBinding by paste()
  *
- *     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
- *         binding = FragmentMainBinding.inflate(inflater, container, false)
- *         return binding.root
- *     }
+ *      override fun onCreateView(
+ *          inflater: LayoutInflater,
+ *          container: ViewGroup?,
+ *          savedInstanceState: Bundle?
+ *      ): View {
+ *          binding = FragmentWithTextBinding.inflate(inflater, container, false)
+ *          return binding.root
+ *      }
+ *  }
  * </code></pre>
  *
  * @receiver [Fragment]
@@ -183,12 +193,9 @@ fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
  * #### Example Usage
  *
  * <pre><code>
- *     private var binding: FragmentMainBinding by paste()
- *
- *     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
- *         binding = FragmentMainBinding.inflate(inflater, container, false)
- *         return binding.root
- *     }
+ *  internal class FragmentBound : BaseFragmentWithLayout(R.layout.fragment_with_text) {
+ *      override val binding: FragmentWithTextBinding by paste(FragmentWithTextBinding::bind)
+ *  }
  * </code></pre>
  *
  * @receiver [Fragment]
