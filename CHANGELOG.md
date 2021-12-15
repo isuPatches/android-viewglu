@@ -8,6 +8,21 @@
 
 ##### Breaking
 
+## 1.2.0
+
+##### Enhancements
+
+*  [No issue] Updates for 1.2.0
+   - New bound methodology for fragments
+   - Fix for leaked lifecycle observer
+   - Update to Java 11
+   - Update to AGP 7.x
+   - Other dependency updates
+
+##### Bug Fixes
+
+##### Breaking
+
 ## 1.1.0
 
 ##### Enhancements

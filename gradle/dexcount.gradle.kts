@@ -16,11 +16,11 @@ buildscript {
 plugins.apply(DexMethodCountPlugin::class)
 
 configure<DexCountExtension> {
-    format = OutputFormat.TREE
-    includeClasses = true
-    includeFieldCount = true
-    includeTotalMethodCount = true
-    orderByMethodCount = true
-    verbose = false
-    runOnEachPackage = true
+    format.set(OutputFormat.TREE)
+    includeClasses.set(true)
+    includeFieldCount.set(true)
+    includeTotalMethodCount.set(true)
+    orderByMethodCount.set(true)
+    verbose.set(false)
+    runOnEachPackage.set(true)
 }

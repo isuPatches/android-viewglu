@@ -53,6 +53,17 @@ allprojects {
             showStackTraces = true
         }
     }
+
+    tasks {
+        withType<KotlinCompile> {
+            kotlinOptions.jvmTarget = "11"
+        }
+
+        withType<JavaCompile> {
+            sourceCompatibility = "${JavaVersion.VERSION_11}"
+            targetCompatibility = "${JavaVersion.VERSION_11}"
+        }
+    }
 }
 
 subprojects {
@@ -85,7 +96,7 @@ subprojects {
                 reportUndocumented.set(true)
                 skipEmptyPackages.set(false)
                 platform.set(jvm)
-                jdkVersion.set(8)
+                jdkVersion.set(11)
                 noStdlibLink.set(false)
                 noJdkLink.set(false)
                 noAndroidSdkLink.set(false)
