@@ -22,6 +22,7 @@ object Dependencies {
         const val APPCOMPAT: String = "androidx.appcompat:appcompat:${Versions.ANDROIDX_APPCOMPAT}"
         const val CONSTRAINT_LAYOUT: String = "androidx.constraintlayout:constraintlayout:" +
             Versions.ANDROIDX_CONSTRAINT_LAYOUT
+        const val VIEWPAGER_2: String = "androidx.viewpager2:viewpager2:${Versions.ANDROIDX_VIEWPAGER_2}"
 
         object Lifecycle {
             const val RUNTIME: String = "androidx.lifecycle:lifecycle-runtime:${Versions.ANDROIDX_LIFECYCLE}"

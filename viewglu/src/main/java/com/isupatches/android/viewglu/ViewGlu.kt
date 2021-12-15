@@ -16,14 +16,18 @@
 package com.isupatches.android.viewglu
 
 import android.app.Activity
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
+import android.view.View
+import androidx.annotation.MainThread
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleObserver
+import androidx.lifecycle.DefaultLifecycleObserver
+import androidx.lifecycle.Lifecycle.State.INITIALIZED
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.viewbinding.ViewBinding
+import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
@@ -81,7 +85,7 @@ inline fun <VIEW_BINDING : ViewBinding> AppCompatActivity.paste(
  *     }
  * </code></pre>
  *
- * @receiver [AppCompatActivity]
+ * @receiver [Activity]
  * @return Lazy<ViewBinding>
  *
  * @author Patches Klinefelter
@@ -126,9 +130,10 @@ inline fun <VIEW_BINDING : ViewBinding> Activity.paste(
  * @since 07/2021
  */
 fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
-    return object : ReadWriteProperty<Fragment, VIEW_BINDING>, LifecycleObserver {
+    return object : ReadWriteProperty<Fragment, VIEW_BINDING>, DefaultLifecycleObserver {
 
         private var binding: VIEW_BINDING? = null
+        private val mainHandler = Handler(Looper.getMainLooper())
 
         init {
             this@paste
@@ -141,10 +146,15 @@ fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
                 )
         }
 
-        @Suppress("unused")
-        @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-        fun onDestroy() {
-            binding = null
+        override fun onDestroy(owner: LifecycleOwner) {
+            super.onDestroy(owner)
+            owner.lifecycle.removeObserver(this)
+
+            // Post to main thread is required so that the Fragment can use the binding
+            // for cleanup in onDestroy and onDestroyView prior to it being released
+            mainHandler.post {
+                binding = null
+            }
         }
 
         override fun getValue(thisRef: Fragment, property: KProperty<*>): VIEW_BINDING {
@@ -153,6 +163,68 @@ fun <VIEW_BINDING> Fragment.paste(): ReadWriteProperty<Fragment, VIEW_BINDING> {
 
         override fun setValue(thisRef: Fragment, property: KProperty<*>, value: VIEW_BINDING) {
             binding = value
+        }
+    }
+}
+
+/**
+ * #### Description
+ *
+ * Helps manage the [ViewBinding] for a [Fragment] so that it is properly destroyed and not leaked.
+ *
+ * #### Notes
+ *
+ *  - Attaches a lifecycle observer to the receiving fragment
+ *  - Requires the fragment to pass in the view to be be bound
+ *  - Removes the binding when the Fragment's onDestroy is triggered
+ *  - Access binding if at least initialized, otherwise attempts to create binding
+ *  - Releases binding onDestroy by posting to main thread
+ *
+ * #### Example Usage
+ *
+ * <pre><code>
+ *     private var binding: FragmentMainBinding by paste()
+ *
+ *     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+ *         binding = FragmentMainBinding.inflate(inflater, container, false)
+ *         return binding.root
+ *     }
+ * </code></pre>
+ *
+ * @receiver [Fragment]
+ * @return ReadOnlyProperty<Fragment, ViewBinding>
+ *
+ * @author Patches Klinefelter
+ * @since 12/2021
+ */
+fun <VIEW_BINDING : ViewBinding> Fragment.paste(
+    viewBinder: (View) -> VIEW_BINDING
+): ReadOnlyProperty<Fragment, VIEW_BINDING> {
+
+    return object : ReadOnlyProperty<Fragment, VIEW_BINDING>, DefaultLifecycleObserver {
+
+        private var binding: VIEW_BINDING? = null
+        private val mainHandler = Handler(Looper.getMainLooper())
+
+        override fun onDestroy(owner: LifecycleOwner) {
+            super.onDestroy(owner)
+            owner.lifecycle.removeObserver(this)
+
+            // Post to main thread is required so that the Fragment can use the binding
+            // for cleanup in onDestroy and onDestroyView prior to it being released
+            mainHandler.post {
+                binding = null
+            }
+        }
+
+        @MainThread
+        override fun getValue(thisRef: Fragment, property: KProperty<*>): VIEW_BINDING {
+            return binding ?: viewBinder(requireView()).also {
+                if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(INITIALIZED)) {
+                    viewLifecycleOwner.lifecycle.addObserver(this)
+                    binding = it
+                }
+            }
         }
     }
 }

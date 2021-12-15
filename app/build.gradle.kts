@@ -2,9 +2,7 @@ import com.isupatches.android.viewglu.build.BuildVersions
 import com.isupatches.android.viewglu.build.Dependencies
 import com.isupatches.android.viewglu.build.TestDependencies
 import com.isupatches.android.viewglu.build.Versions
-import com.isupatches.android.viewglu.build.debug
 import com.isupatches.android.viewglu.build.navigation
-import com.isupatches.android.viewglu.build.release
 import java.util.Properties
 
 plugins {
@@ -19,7 +17,7 @@ if (keystoreFile.exists()) {
 }
 
 android {
-    compileSdkVersion(BuildVersions.COMPILE_SDK)
+    compileSdk = BuildVersions.COMPILE_SDK
     buildToolsVersion = BuildVersions.BUILD_TOOLS
 
     defaultConfig {
@@ -70,30 +68,25 @@ android {
         }
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-
-    kotlinOptions {
-        jvmTarget = "${JavaVersion.VERSION_1_8}"
-    }
-
     buildFeatures {
         viewBinding = true
     }
 
-    jacoco {
-        version = Versions.JACOCO
+    testCoverage {
+        jacocoVersion = Versions.JACOCO
     }
 
-    lintOptions {
+    lint {
         isCheckAllWarnings = true
         isShowAll = true
         isExplainIssues = true
         isAbortOnError = true
         isWarningsAsErrors = true
-        warning("UnusedIds") // Currently warnings for ViewBinding
+        /*
+         * UnusedIds is currently disabled for ViewBinding
+         * ObsoleteLintCustomCheck is currently disabled for androidx.fragment.lint.FragmentIssueRegistry
+         */
+        disable("UnusedIds", "ObsoleteLintCustomCheck")
     }
 }
 
@@ -101,13 +94,14 @@ dependencies {
     /*
      * Toggle these to test release binary vs. source code
      */
-//    implementation(project(":viewglu"))
-    implementation("com.isupatches.android:viewglu:1.0.0") {
-        isChanging = true
-    }
+    implementation(project(":viewglu"))
+//    implementation("com.isupatches.android:viewglu:1.0.0") {
+//        isChanging = true
+//    }
 
     implementation(Dependencies.AndroidX.APPCOMPAT)
     implementation(Dependencies.AndroidX.CONSTRAINT_LAYOUT)
+    implementation(Dependencies.AndroidX.VIEWPAGER_2)
 
     implementation(Dependencies.Kotlin.STD_LIB)
 
