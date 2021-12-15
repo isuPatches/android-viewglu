@@ -18,41 +18,42 @@ package com.isupatches.android.viewglu.build
 @Suppress("StringLiteralDuplication")
 object Versions {
     // Core tooling
-    const val AGP: String = "4.2.2"
-    const val KOTLIN: String = "1.5.21"
+    const val AGP: String = "7.0.4"
+    const val KOTLIN: String = "1.6.10"
 
     // AndroidX
-    const val ANDROIDX_ANNOTATION: String = "1.2.0"
-    const val ANDROIDX_APPCOMPAT: String = "1.3.0"
-    const val ANDROIDX_CONSTRAINT_LAYOUT: String = "2.0.4"
-    const val ANDROIDX_LIFECYCLE: String = "2.3.1"
+    const val ANDROIDX_ANNOTATION: String = "1.3.0"
+    const val ANDROIDX_APPCOMPAT: String = "1.4.0"
+    const val ANDROIDX_CONSTRAINT_LAYOUT: String = "2.1.2"
+    const val ANDROIDX_LIFECYCLE: String = "2.4.0"
     const val ANDROIDX_NAVIGATION: String = "2.3.5"
+    const val ANDROIDX_VIEWPAGER_2: String = "1.0.0"
 
     // Google
     const val GOOGLE_MATERIAL: String = "1.4.0"
 
     // Static Analysis
     const val CPD: String = "3.2"
-    const val DETEKT: String = "1.17.1"
-    const val DEXCOUNT: String = "2.1.0-RC01"
-    const val KTLINT_PLUGIN: String = "10.1.0"
-    const val KTLINT: String = "0.41.0"
+    const val DETEKT: String = "1.19.0"
+    const val DEXCOUNT: String = "3.0.1"
+    const val KTLINT_PLUGIN: String = "10.2.0"
+    const val KTLINT: String = "0.43.2"
 
     // Documentation
     const val DOKKA: String = "1.5.0"
 
     // Code Coverage
-    const val JACOCO: String = "0.8.3"
+    const val JACOCO: String = "0.8.7"
 
     // Common Test
-    const val ANDROIDX_TEST_EXT_JUNIT: String = "1.1.1"
-    const val ANDROIDX_FRAGMENT_TESTING: String = "1.3.6"
+    const val ANDROIDX_TEST_EXT_JUNIT: String = "1.1.2"
+    const val ANDROIDX_FRAGMENT_TESTING: String = "1.4.0"
 
     // Unit Test
     const val JUNIT: String = "4.13.2"
 
     // Android Test
-    const val ANDROIDX_ESPRESSO: String = "3.3.0"
+    const val ANDROIDX_ESPRESSO: String = "3.4.0"
     const val ANDROIDX_TEST_RULES: String = "1.4.0"
     const val ANDROIDX_TEST_RUNNER: String = "1.4.0"
 }

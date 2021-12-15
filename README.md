@@ -91,22 +91,37 @@ See the [MainActivity](/app/src/main/java/com/isupatches/android/viewglu/sample/
 
 ### For A Fragment
 
-Fragments are slightly different so that memory constraints and leaks are prevented. Similar to activities though, they have to signal that the binding's root should be used:
+Fragments are slightly different so that memory constraints and leaks are prevented.
+
+Option 1: Via binding an already inflated view
 
 ```Kotlin
-private var binding: FragmentMainBinding by paste()
-
-override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-    binding = FragmentMainBinding.inflate(inflater, container, false)
-    return binding.root
+internal class FragmentBound : BaseFragmentWithLayout(R.layout.fragment_with_text) {
+  override val binding: FragmentWithTextBinding by paste(FragmentWithTextBinding::bind)
 }
 ```
 
----
-> ViewGlu will automagically detach the binding during the Fragment's `onDestroy`
----
+See the [FragmentBound](/app/src/main/java/com/isupatches/android/viewglu/sample/FragmentBound.kt) for a full example.
 
-See the [MainFragment](/app/src/main/java/com/isupatches/android/viewglu/sample/MainFragment.kt) for a full example.
+Option 2: Via manual inflation
+
+```Kotlin
+internal class FragmentInflated : BaseFragment() {
+
+  private var binding: FragmentWithTextBinding by paste()
+
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
+    binding = FragmentWithTextBinding.inflate(inflater, container, false)
+    return binding.root
+  }
+}
+```
+
+See the [FragmentInflated](/app/src/main/java/com/isupatches/android/viewglu/sample/FragmentInflated.kt) for a full example.
+
+---
+> In both cases, ViewGlu will automagically detach the binding during the Fragment's `onDestroy`
+---
 
 ## What's New?
 
@@ -139,6 +154,10 @@ For publishing:
 For documentation
 
 - [Dokka](https://github.com/Kotlin/dokka)
+
+For the sample app:
+
+- [androidx.viewpager2:viewpager2](https://developer.android.com/jetpack/androidx/releases/viewpager2)
 
 ## Additional Resources
 
