@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.isupatches.android.viewglu.build
+package com.isupatches.android.viewglu.sample.base
 
-object BuildVersions {
-    const val BUILD_TOOLS: String = "30.0.3"
+import androidx.annotation.LayoutRes
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
 
-    const val COMPILE_SDK: Int = 31
-    const val TARGET_SDK: Int = 31
-    const val MIN_SDK: Int = 16
-
-    const val MODULE_VERSION_CODE: Int = 3
-    const val MODULE_VERSION_NAME: String = "1.2.0"
+internal abstract class BaseFragmentWithLayout(@LayoutRes layoutResId: Int) : Fragment(layoutResId) {
+    protected abstract val binding: ViewBinding
 }

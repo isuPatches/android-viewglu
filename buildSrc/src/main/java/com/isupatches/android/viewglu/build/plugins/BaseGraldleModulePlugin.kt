@@ -17,12 +17,9 @@ package com.isupatches.android.viewglu.build.plugins
 
 import com.android.build.gradle.LibraryExtension
 import com.isupatches.android.viewglu.build.BuildVersions
-import com.isupatches.android.viewglu.build.debug
 import com.isupatches.android.viewglu.build.Dependencies
-import com.isupatches.android.viewglu.build.release
 import com.isupatches.android.viewglu.build.DependencyConstants.IMPLEMENTATION
 import com.isupatches.android.viewglu.build.Versions
-import org.gradle.api.JavaVersion
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.kotlin.dsl.apply
@@ -51,15 +48,12 @@ class BaseGradleModulePlugin : Plugin<Project> {
                 keystoreProperties.load(FileInputStream(keystorePropertiesFile))
             }
 
-            compileSdkVersion(BuildVersions.COMPILE_SDK)
+            compileSdk = BuildVersions.COMPILE_SDK
             buildToolsVersion = BuildVersions.BUILD_TOOLS
 
             defaultConfig {
-                minSdkVersion(BuildVersions.MIN_SDK)
-                targetSdkVersion(BuildVersions.TARGET_SDK)
-
-                versionCode = BuildVersions.MODULE_VERSION_CODE
-                versionName = BuildVersions.MODULE_VERSION_NAME
+                minSdk = BuildVersions.MIN_SDK
+                targetSdk = BuildVersions.TARGET_SDK
 
                 vectorDrawables.useSupportLibrary = true
 
@@ -102,16 +96,11 @@ class BaseGradleModulePlugin : Plugin<Project> {
                 }
             }
 
-            compileOptions {
-                sourceCompatibility = JavaVersion.VERSION_1_8
-                targetCompatibility = JavaVersion.VERSION_1_8
-            }
-
             sourceSets {
-                getByName("main") { jni.srcDirs() }
+                getByName("main") { jniLibs.srcDirs() }
             }
 
-            lintOptions {
+            lint {
                 isCheckAllWarnings = true
                 isShowAll = true
                 isExplainIssues = true
@@ -124,8 +113,8 @@ class BaseGradleModulePlugin : Plugin<Project> {
                 unitTests.isReturnDefaultValues = true
             }
 
-            jacoco {
-                version = Versions.JACOCO
+            testCoverage {
+                jacocoVersion = Versions.JACOCO
             }
         }
 

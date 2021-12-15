@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">android-viewglu</string>
-    <string name="hello_world">Hello World!</string>
+    <string name="bound">Bound</string>
+    <string name="bound_fragment_text">Bound fragment layout</string>
+    <string name="inflated">Inflated</string>
+    <string name="inflated_fragment_text">Inflated fragment layout</string>
 </resources>
