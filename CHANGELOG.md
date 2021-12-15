@@ -12,7 +12,9 @@
 
 ##### Enhancements
 
-*  [No issue] Updates for 1.2.0
+* [No issue] Update documentation for 1.2.0
+
+* [No issue] Updates for 1.2.0
    - New bound methodology for fragments
    - Fix for leaked lifecycle observer
    - Update to Java 11
