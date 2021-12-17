@@ -8,6 +8,21 @@
 
 ##### Breaking
 
+## 2.0.0
+
+##### Enhancements
+
+##### Bug Fixes
+
+##### Breaking
+
+* [No issue] Updates for 2.0.0
+    - Organization and package structure updates
+    - Typo fixes
+    - Enable proguard for sample app
+    - Instrumentation test updates
+    - Update documentation for 2.0.0
+    
 ## 1.2.0
 
 ##### Enhancements
