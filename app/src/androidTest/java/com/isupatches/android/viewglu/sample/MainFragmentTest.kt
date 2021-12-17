@@ -19,7 +19,6 @@ import androidx.fragment.app.testing.FragmentScenario
 import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.isupatches.android.viewglu.sample.testobjects.BaseRobot
-import com.isupatches.android.viewglue.sample.R
 import org.junit.Test
 import org.junit.runner.RunWith
 

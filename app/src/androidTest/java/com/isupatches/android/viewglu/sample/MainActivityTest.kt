@@ -21,7 +21,6 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.isupatches.android.viewglu.sample.testobjects.BaseRobot
-import com.isupatches.android.viewglue.sample.R
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith

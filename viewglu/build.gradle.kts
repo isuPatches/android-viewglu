@@ -6,9 +6,9 @@ import com.isupatches.android.viewglu.build.lifecycle
 
 plugins {
     id("com.android.library")
-    id("com.isupatches.android.viewglue.build.plugins.BaseGradleModulePlugin")
-    id("com.isupatches.android.viewglue.build.plugins.DocumentationPlugin")
-    id("com.isupatches.android.viewglue.build.plugins.PublishingPlugin")
+    id("com.isupatches.android.viewglu.build.plugins.BaseGradleModulePlugin")
+    id("com.isupatches.android.viewglu.build.plugins.DocumentationPlugin")
+    id("com.isupatches.android.viewglu.build.plugins.PublishingPlugin")
     id("kotlin-android")
     id("kotlin-kapt")
 }
