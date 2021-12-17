@@ -21,7 +21,7 @@ import android.view.View
 import androidx.annotation.MainThread
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
-import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Lifecycle.State.INITIALIZED
 import androidx.lifecycle.LifecycleOwner
 import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
@@ -152,7 +152,7 @@ fun <VIEW_BINDING : ViewBinding> Fragment.paste(
         @MainThread
         override fun getValue(thisRef: Fragment, property: KProperty<*>): VIEW_BINDING {
             return binding ?: viewBinder(requireView()).also {
-                if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(Lifecycle.State.INITIALIZED)) {
+                if (viewLifecycleOwner.lifecycle.currentState.isAtLeast(INITIALIZED)) {
                     viewLifecycleOwner.lifecycle.addObserver(this)
                     binding = it
                 }
