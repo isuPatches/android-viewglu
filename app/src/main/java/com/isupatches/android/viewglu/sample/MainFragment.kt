@@ -20,10 +20,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.isupatches.android.viewglu.paste
+import com.isupatches.android.viewglu.fragment.paste
 import com.isupatches.android.viewglu.sample.base.BaseFragmentWithLayout
-import com.isupatches.android.viewglue.sample.R
-import com.isupatches.android.viewglue.sample.databinding.FragmentMainBinding
+import com.isupatches.android.viewglu.sample.databinding.FragmentMainBinding
 
 internal class MainFragment : BaseFragmentWithLayout(R.layout.fragment_main) {
 

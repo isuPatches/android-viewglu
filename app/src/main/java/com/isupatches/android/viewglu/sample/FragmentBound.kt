@@ -17,10 +17,9 @@ package com.isupatches.android.viewglu.sample
 
 import android.os.Bundle
 import android.view.View
-import com.isupatches.android.viewglu.paste
+import com.isupatches.android.viewglu.fragment.paste
 import com.isupatches.android.viewglu.sample.base.BaseFragmentWithLayout
-import com.isupatches.android.viewglue.sample.R
-import com.isupatches.android.viewglue.sample.databinding.FragmentWithTextBinding
+import com.isupatches.android.viewglu.sample.databinding.FragmentWithTextBinding
 
 internal class FragmentBound : BaseFragmentWithLayout(R.layout.fragment_with_text) {
 

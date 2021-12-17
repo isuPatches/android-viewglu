@@ -19,10 +19,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.isupatches.android.viewglu.paste
+import com.isupatches.android.viewglu.fragment.paste
 import com.isupatches.android.viewglu.sample.base.BaseFragment
-import com.isupatches.android.viewglue.sample.R
-import com.isupatches.android.viewglue.sample.databinding.FragmentWithTextBinding
+import com.isupatches.android.viewglu.sample.databinding.FragmentWithTextBinding
 
 internal class FragmentInflated : BaseFragment() {
 

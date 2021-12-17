@@ -52,8 +52,8 @@ android {
         debug {
             applicationIdSuffix = ".debug"
             isTestCoverageEnabled = true
-            isMinifyEnabled = false
-            isShrinkResources = false
+            isMinifyEnabled = true
+            isShrinkResources = true
             proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules-debug.pro")
             testProguardFile(file("proguard-rules-test.pro"))
             signingConfig = signingConfigs.getByName("debug")
@@ -91,11 +91,14 @@ android {
 }
 
 dependencies {
-    /*
-     * Toggle these to test release binary vs. source code
-     */
+
     implementation(project(":viewglu"))
-//    implementation("com.isupatches.android:viewglu:1.0.0") {
+
+    // Uncomment for testing with a production artifact
+//    implementation("com.isupatches.android:viewglu:2.0.0")
+
+    // Uncomment for testing with a SNAPSHOT artifact
+//    implementation("com.isupatches.android:viewglu:2.0.0-SNAPSHOT") {
 //        isChanging = true
 //    }
 

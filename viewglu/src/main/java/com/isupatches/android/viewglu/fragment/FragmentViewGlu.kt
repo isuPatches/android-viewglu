@@ -13,15 +13,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.isupatches.android.viewglu
+package com.isupatches.android.viewglu.fragment
 
-import android.app.Activity
 import android.os.Handler
 import android.os.Looper
-import android.view.LayoutInflater
 import android.view.View
 import androidx.annotation.MainThread
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.Lifecycle.State.INITIALIZED
@@ -30,78 +27,6 @@ import androidx.viewbinding.ViewBinding
 import kotlin.properties.ReadOnlyProperty
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
-
-/**
- * #### Description
- *
- * Helps to apply a [ViewBinding] to an [AppCompatActivity] by invoking the inflater.
- *
- * #### Notes
- *   - Uses the activity's layout inflater
- *   - The [LazyThreadSafetyMode] is set to NONE
- *   - Still requires the activity to apply the inflated binding
- *
- * #### Example Usage
- * <pre><code>
- *  internal class MainActivity : AppCompatActivity() {
- *      private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
- *
- *      override fun onCreate(savedInstanceState: Bundle?) {
- *          super.onCreate(savedInstanceState)
- *          setContentView(binding.root)
- *      }
- *  }
- * </code></pre>
- *
- * @receiver [AppCompatActivity]
- * @return Lazy<ViewBinding>
- *
- * @author Patches Klinefelter
- * @since 07/2021
- */
-inline fun <VIEW_BINDING : ViewBinding> AppCompatActivity.paste(
-    crossinline bindingInflater: (LayoutInflater) -> VIEW_BINDING
-): Lazy<VIEW_BINDING> {
-    return lazy(LazyThreadSafetyMode.NONE) {
-        bindingInflater.invoke(layoutInflater)
-    }
-}
-
-/**
- * #### Description
- *
- * Helps to apply a [ViewBinding] to an [Activity] by invoking the inflater.
- *
- * #### Notes
- *   - Uses the activity's layout inflater
- *   - The [LazyThreadSafetyMode] is set to NONE
- *   - Still requires the activity to apply the inflated binding
- *
- * #### Example Usage
- * <pre><code>
- *  internal class MainActivity : Activity() {
- *      private val binding: ActivityMainBinding by paste(ActivityMainBinding::inflate)
- *
- *      override fun onCreate(savedInstanceState: Bundle?) {
- *          super.onCreate(savedInstanceState)
- *          setContentView(binding.root)
- *      }
- *  }
- * </code></pre>
- *
- * @receiver [Activity]
- * @return Lazy<ViewBinding>
- *
- * @author Patches Klinefelter
- * @since 08/2021
- */
-inline fun <VIEW_BINDING : ViewBinding> Activity.paste(
-    crossinline bindingInflater: (LayoutInflater) -> VIEW_BINDING
-): Lazy<VIEW_BINDING> {
-    return lazy(LazyThreadSafetyMode.NONE) {
-        bindingInflater.invoke(layoutInflater)
-    }
-}
 
 /**
  * #### Description
