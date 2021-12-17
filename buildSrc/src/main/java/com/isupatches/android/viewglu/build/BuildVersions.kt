@@ -23,5 +23,5 @@ object BuildVersions {
     const val MIN_SDK: Int = 16
 
     const val MODULE_VERSION_CODE: Int = 4
-    const val MODULE_VERSION_NAME: String = "1.2.1"
+    const val MODULE_VERSION_NAME: String = "2.0.0"
 }

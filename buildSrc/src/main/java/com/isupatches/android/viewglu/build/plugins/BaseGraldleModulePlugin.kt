@@ -78,8 +78,9 @@ class BaseGradleModulePlugin : Plugin<Project> {
 
             buildTypes {
                 debug {
-                    // Test coverage needs to be disabled to release -SNAPSHOT builds
-                    isTestCoverageEnabled = true
+                    // Coverage needs to be disabled for publishing SNAPSHOT builds, otherwise an error
+                    // will be displayed about needing to provide the original non-instrumented classes
+                    isTestCoverageEnabled = false
                     isMinifyEnabled = false
                     proguardFiles(getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro")
                     testProguardFile("proguard-rules-test.pro")

@@ -1,9 +1,13 @@
 $dokka.format:gfm-v1
 $dokka.linkExtension:md
-$dokka.location:com.isupatches.android.viewglu////PointingToDeclaration/viewglu/com.isupatches.android.viewglu/index.md
-$dokka.location:com.isupatches.android.viewglu//paste/android.app.Activity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
-$dokka.location:com.isupatches.android.viewglu//paste/androidx.appcompat.app.AppCompatActivity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
-$dokka.location:com.isupatches.android.viewglu//paste/androidx.fragment.app.Fragment#/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
-$dokka.location:com.isupatches.android.viewglu//paste/androidx.fragment.app.Fragment#kotlin.Function1[android.view.View,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu/paste.md
-com.isupatches.android.viewglu
+$dokka.location:com.isupatches.android.viewglu.activity////PointingToDeclaration/viewglu/com.isupatches.android.viewglu.activity/index.md
+$dokka.location:com.isupatches.android.viewglu.activity//paste/android.app.Activity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu.activity/paste.md
+$dokka.location:com.isupatches.android.viewglu.appcompat.activity////PointingToDeclaration/viewglu/com.isupatches.android.viewglu.appcompat.activity/index.md
+$dokka.location:com.isupatches.android.viewglu.appcompat.activity//paste/androidx.appcompat.app.AppCompatActivity#kotlin.Function1[android.view.LayoutInflater,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu.appcompat.activity/paste.md
+$dokka.location:com.isupatches.android.viewglu.fragment////PointingToDeclaration/viewglu/com.isupatches.android.viewglu.fragment/index.md
+$dokka.location:com.isupatches.android.viewglu.fragment//paste/androidx.fragment.app.Fragment#/PointingToDeclaration/viewglu/com.isupatches.android.viewglu.fragment/paste.md
+$dokka.location:com.isupatches.android.viewglu.fragment//paste/androidx.fragment.app.Fragment#kotlin.Function1[android.view.View,TypeParam(bounds=[androidx.viewbinding.ViewBinding])]/PointingToDeclaration/viewglu/com.isupatches.android.viewglu.fragment/paste.md
+com.isupatches.android.viewglu.activity
+com.isupatches.android.viewglu.appcompat.activity
+com.isupatches.android.viewglu.fragment
 
