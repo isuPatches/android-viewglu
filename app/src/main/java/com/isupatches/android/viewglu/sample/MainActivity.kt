@@ -15,7 +15,7 @@
  */
 package com.isupatches.android.viewglu.sample
 
-import com.isupatches.android.viewglu.paste
+import com.isupatches.android.viewglu.appcompat.activity.paste
 import com.isupatches.android.viewglu.sample.base.BaseActivity
 import com.isupatches.android.viewglu.sample.databinding.ActivityMainBinding
 
